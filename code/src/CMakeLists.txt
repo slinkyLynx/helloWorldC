@@ -1,6 +1,7 @@
 set(EXECUTABLE_NAME helloWorldC)
 
 add_executable(${EXECUTABLE_NAME}
+    ball.c
 	main.c
 )
 
