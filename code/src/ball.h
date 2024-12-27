@@ -13,3 +13,5 @@ typedef struct ball {
 void Init(Ball* b, const float startMass, const float startRadius, const float startHeight, const float startVel, const float startElas);
 
 void AdjustHeightVelocity(Ball* b, const float timestep);
+
+void ReflectAfterImpact(Ball* b);

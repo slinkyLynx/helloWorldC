@@ -12,12 +12,13 @@ void Init(Ball* b, const float startMass, const float startRadius, const float s
 }
 
 void AdjustHeightVelocity(Ball* b, const float timestep) {
-    char string[500];
-    memset(string, 0, sizeof string);
+#ifndef NDEBUG
+    // TODO: Use sprintf, then print the buffer to the console.
     printf("Old height:\t");
-    sprintf(string, "%f", b->height);
+    printf("%+f", b->height);
     printf(" m\nOld velocity:\t");
-    sprintf(string, "%f", b->velocity);
+    printf("%+f", b->velocity);
+#endif
 
     const float dVel = timestep * GRAVITY;
     const float oldVel = b->velocity;
@@ -25,9 +26,26 @@ void AdjustHeightVelocity(Ball* b, const float timestep) {
     const float dHeight = timestep * (oldVel + b->velocity) / 2.0f;
     b->height += dHeight;
 
+#ifndef NDEBUG
     printf(" m/s\nNew height:\t");
-    sprintf(string, "%f", b->height);
+    printf("%+f", b->height);
     printf(" m\nNew velocity:\t");
-    sprintf(string, "%f", b->velocity);
+    printf("%+f", b->velocity);
     printf(" m/s\n");
+#endif
+}
+
+void ReflectAfterImpact(Ball* b) {
+#ifndef NDEBUG
+    printf("Old velocity:\t");
+    printf("%+f", b->velocity);
+#endif
+
+    b->velocity *= -b->elasticity;
+
+#ifndef NDEBUG
+    printf(" m/s\nNew velocity:\t");
+    printf("%+f", b->velocity);
+    printf(" m/s\n");
+#endif
 }

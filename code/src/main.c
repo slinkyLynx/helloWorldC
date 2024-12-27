@@ -1,5 +1,6 @@
 #include "ball.h"
 
+#include <math.h>
 #include <stdio.h>
 
 int main(void) {
@@ -12,6 +13,38 @@ int main(void) {
     const float startVel = 1.42f;
     const float startElas = 0.9f;
     Init(&b, startMass, startRadius, startHeight, startVel, startElas);
-    AdjustHeightVelocity(&b, 0.1f);
+    int reflections = 0;
+
+    for (int i = 0; i < __INT_MAX__; ++i) {
+#ifndef NDEBUG
+        putchar('\n');
+#endif
+        const float timestep = 1E-5F;
+        AdjustHeightVelocity(&b, timestep);
+        if (b.height < startRadius) {
+            ReflectAfterImpact(&b);
+            ++reflections;
+
+            if (fabsf(b.velocity) < 1E-3F) {
+                printf("Time elapsed:\t");
+                printf("%+f", timestep * (float)i);
+                printf(" s (");
+                printf("%d", i);
+                printf(" cycles)\n");
+
+                printf("Reflections:\t");
+                printf("%d", reflections);
+                putchar('\n');
+                break;
+            }
+        }
+    }
+
+    printf("New height:\t");
+    printf("%+f", b.height);
+    printf(" m\nNew velocity:\t");
+    printf("%+f", b.velocity);
+    printf(" m/s\n");
+
     return 0;
 }
