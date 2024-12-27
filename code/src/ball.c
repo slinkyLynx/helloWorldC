@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 
-void Init(Ball* b) {
-    b->mass = 1.0f;
-    b->radius = 0.2f;
-    b->height = 0.5f;
-    b->velocity = 0.0f;
-    b->elasticity = 1.0f;
+void Init(Ball* b, const float startMass, const float startRadius, const float startHeight, const float startVel, const float startElas) {
+    b->mass = startMass;
+    b->radius = startRadius;
+    b->height = startHeight;
+    b->velocity = startVel;
+    b->elasticity = startElas;
 }
 
 void AdjustHeightVelocity(Ball* b, const float timestep) {

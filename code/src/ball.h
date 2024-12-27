@@ -10,6 +10,6 @@ typedef struct ball {
     float elasticity; // 0-1
 } Ball;
 
-void Init(Ball* b);
+void Init(Ball* b, const float startMass, const float startRadius, const float startHeight, const float startVel, const float startElas);
 
 void AdjustHeightVelocity(Ball* b, const float timestep);
