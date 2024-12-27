@@ -20,8 +20,10 @@ void AdjustHeightVelocity(Ball* b, const float timestep) {
     sprintf(string, "%f", b->velocity);
 
     const float dVel = timestep * GRAVITY;
+    const float oldVel = b->velocity;
     b->velocity += dVel;
-    b->height += dVel / 2.0f;
+    const float dHeight = timestep * (oldVel + b->velocity) / 2.0f;
+    b->height += dHeight;
 
     printf(" m/s\nNew height:\t");
     sprintf(string, "%f", b->height);
