@@ -1,6 +1,6 @@
 #pragma once
 
-#define GRAVITY 9.80665f;
+#define GRAVITY -9.80665f;
 
 typedef struct ball {
     float mass; // kg
