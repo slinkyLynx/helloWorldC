@@ -15,7 +15,7 @@ int main(void) {
     Init(&b, startMass, startRadius, startHeight, startVel, startElas);
     int reflections = 0;
 
-    for (int i = 0; i < __INT_MAX__; ++i) {
+    for (int i = 0; i < 1E6; ++i) {
 #ifndef NDEBUG
         putchar('\n');
 #endif
