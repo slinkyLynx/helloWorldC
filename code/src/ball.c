@@ -1,5 +1,7 @@
 #include "ball.h"
 
+#include <physConstants.h>
+
 #include <stdio.h>
 #include <string.h>
 
@@ -20,7 +22,7 @@ void AdjustHeightVelocity(Ball* b, const float timestep) {
     printf("%+f", b->velocity);
 #endif
 
-    const float dVel = timestep * GRAVITY;
+    const float dVel = timestep * GRAV_EARTH;
     const float oldVel = b->velocity;
     b->velocity += dVel;
     const float dHeight = timestep * (oldVel + b->velocity) / 2.0f;
