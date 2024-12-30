@@ -15,18 +15,18 @@ int main(void) {
     Init(&b, startMass, startRadius, startHeight, startVel, startElas);
     int reflections = 0;
 
-    for (int i = 0; i < 1E6; ++i) {
+    for (int i = 0; i < 1E3; ++i) {
 #ifndef NDEBUG
         putchar('\n');
 #endif
-        const float timestep = 1E-5F;
+        const float timestep = 1E-2F;
         AdjustHeightVelocity(&b, timestep);
         if (b.height < startRadius) {
             ReflectAfterImpact(&b);
             ++reflections;
 
-            if (fabsf(b.velocity) < 1E-3F) {
-                printf("Time elapsed:\t");
+            if (fabsf(b.velocity) < 1E-2F) {
+                printf("\nTime elapsed:\t");
                 printf("%+f", timestep * (float)i);
                 printf(" s (");
                 printf("%d", i);
@@ -34,13 +34,12 @@ int main(void) {
 
                 printf("Reflections:\t");
                 printf("%d", reflections);
-                putchar('\n');
                 break;
             }
         }
     }
 
-    printf("New height:\t");
+    printf("\nNew height:\t");
     printf("%+f", b.height);
     printf(" m\nNew velocity:\t");
     printf("%+f", b.velocity);
