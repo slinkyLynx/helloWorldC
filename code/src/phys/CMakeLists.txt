@@ -5,7 +5,7 @@ add_library(${LIBRARY_NAME} INTERFACE)
 target_compile_features(${LIBRARY_NAME} INTERFACE c_std_99)
 
 target_sources(${LIBRARY_NAME}
-	PRIVATE
+	INTERFACE
 	physConstants.h
 )
 
